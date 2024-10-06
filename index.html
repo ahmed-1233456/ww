@@ -1,183 +1,301 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ar" dir="rtl">
 <head>
-      <meta charset="UTF-8">
+    <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>FOX TV</title>
-    <link rel="stylesheet" href="styles.css">
-    <link rel="icon" href="https://i.postimg.cc/pXm9JmJy/FOX.png" type="image/png">
+    <title>FOX PRO TV</title>
 	<link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Alexandria:wght@100..900&display=swap" rel="stylesheet">
-	<link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Alexandria:wght@100..900&family=Noto+Sans:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans:ital,wdth,wght@0,62.5,100..900;1,62.5,100..900&family=Roboto+Condensed:ital,wght@0,500;1,500&display=swap" rel="stylesheet">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Kufi+Arabic:wght@500&display=swap" rel="stylesheet">
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: "Roboto Condensed", sans-serif;
+			font-family: "Noto Kufi Arabic", sans-serif;
+        }
+
+        body {
+            background: radial-gradient(ellipse at bottom, #3E3E3E 0%, #090A0F 100%);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            padding: 20px;
+            padding-top: 50px; /* إضافة مسافة من أعلى الصفحة */
+            flex-direction: column; /* ترتيب العناصر عمودياً */
+        }
+		
+
+        .container {
+            width: 100%;
+            max-width: 800px;
+            background-color: #C6C5C5;
+            padding: 20px;
+            border-radius: 20px;
+            text-align: center;
+            color: #FFF;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            margin-top: 40px; /* زيادة المسافة العليا */
+            height: auto;
+            padding-bottom: 40px; /* إضافة مساحة إضافية أسفل الحاوية */
+        }
+
+        .app-logo {
+            position: relative;
+            margin-bottom: -40px;
+        }
+
+        @media (max-width: 767px) {
+            .app-logo {
+                top: -50px;
+            }
+        }
+
+        @media (min-width: 768px) {
+            .app-logo {
+                top: 0;
+                margin-top: -30px;
+            }
+        }
+
+        .app-logo img {
+            width: 120px;
+            height: 120px;
+            border-radius: 20px;
+            background-color: #C6C5C5;
+            padding: 5px;
+            margin-top: -15px;
+        }
+
+        h1 {
+            font-size: 24px;
+            margin-bottom: 10px;
+            color: #000;
+			
+        }
+
+          p {
+        color: #000;
+        margin-bottom: 40px;
+        margin-top:40px; /* إضافة مسافة من أعلى الفقرة */
+    }
+
+        .app-info {
+            border: 1px solid #A1A1A1;
+            border-radius: 10px;
+            padding: 10px;
+            margin-bottom: 20px;
+        }
+
+        .app-info table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        .app-info th, .app-info td {
+            padding: 12px;
+            text-align: right;
+            border-bottom: 1px solid #A1A1A1;
+        }
+
+        .app-info tr:last-child td {
+            border-bottom: none; /* إزالة الحد السفلي من آخر صف */
+        }
+
+        .app-info th {
+            background-color: #D2D1CC;
+            color: #212121;
+            font-weight: bold;
+			border-radius: 10PX;
+        }
+
+        .app-info td {
+            color: #212121;
+        }
+
+        .buttons {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .download-btn {
+            background-color: #212121;
+            color: #fff;
+            padding: 10px;
+            border: none;
+            border-radius: 5px;
+            font-size: 16px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: space-between; /* تباعد بين الصورة والنص */
+            transition: background-color 0.3s;
+            text-decoration: none; /* إزالة الخط تحت النص */
+        }
+
+        .download-btn img {
+            width: 35px; /* عرض الصورة */
+            height: 35px; /* ارتفاع الصورة */
+            margin-left: 8px; /* مسافة بين النص والصورة */
+            order: 1; /* اجعل الصورة تأتي بعد النص */
+            border-radius: 20px;
+        }
+
+        .download-btn span {
+            flex-grow: 1; /* اجعل النص يأخذ المساحة المتاحة */
+            text-align: center; /* مركز النص */
+            order: 2; /* اجعل النص يأتي قبل الصورة */
+        }
+
+        .telegram-btn {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background-color: #0088cc;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            text-decoration: none;
+            transition: background-color 0.3s;
+        }
+
+        .telegram-btn:hover {
+            background-color: #0077b3;
+        }
+
+        .telegram-btn i {
+            color: #fff;
+            font-size: 24px;
+        }
+
+        /* Styles for the gallery */
+        .gallery {
+            display: flex;
+            overflow-x: auto; /* Enable horizontal scrolling */
+            gap: 10px; /* Space between images */
+            margin-top: -5px; /* Margin above the gallery */
+            padding: 10px; /* Padding for the gallery */
+            border: 1px solid #A1A1A1; /* Border around the gallery */
+            border-radius: 10px; /* Rounded corners for the gallery */
+        }
+
+        .gallery img {
+            width: 400px; /* Width of each image */
+            height: 300px; /* Height of each image */
+            border-radius: 10px; /* Rounded corners for images */
+            object-fit: cover; /* Cover the area without distortion */
+            transition: transform 0.3s ease; /* Smooth transition for scaling */
+        }
+
+        .gallery img:hover {
+            transform: translateY(-10px) scale(1.1); /* Move up and scale on hover */
+        }
+		  @keyframes moveImage {
+            0% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+            100% { transform: translateY(0); }
+        }
+		
+    </style>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 </head>
-<style>
-body, html {
-    height: 100%;
-    margin: 0;
-    font-family: "Alexandria", sans-serif;
-    direction: rtl;
-}
-
-.container {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    height: 100%;
-    background: linear-gradient(270deg, #212121, #363635, #212121, #363635, #212121);
-    background-size: 400% 400%;
-    animation: gradient-spin 10s ease infinite;
-    color: white;
-    text-align: center;
-}
-
-@keyframes gradient-spin {
-    0% { background-position: 0% 50%; }
-    50% { background-position: 100% 50%; }
-    100% { background-position: 0% 50%; }
-}
-
-header {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    width: 100%;
-}
-
-.logo {
-    width: 100px;
-    height: 100px;
-    border-radius: 10px;
-    margin-bottom: 10px;
-    border: 5px solid white;
-}
-
-.menu {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    width: 100%;
-	font-family: "Alexandria", sans-serif;
-}
-
-.menu-button {
-    display: flex;
-    align-items: center;
-    justify-content: flex-start;
-    background: #A7A5A5;
-    border: none;
-    border-radius: 5px;
-    padding: 10px 20px;
-    margin: 10px;
-    color: WHITE;
-    font-size: 20px;
-    cursor: pointer;
-    width: 330px;
-	height: 45px; /* تغيير هذه القيمة حسب الطول الذي تريده */
-    position: relative;
-	font-family: "Alexandria", sans-serif;
-}
-
-.menu-button:hover {
-    animation: glow 1s infinite alternate;
-}
-
-@keyframes glow {
-    0% {
-        box-shadow: 0 0 5px rgba(255, 255, 255, 0.5), 0 0 10px rgba(255, 255, 255, 0.5);
-    }
-    100% {
-        box-shadow: 0 0 20px rgba(255, 255, 255, 1), 0 0 30px rgba(255, 255, 255, 1);
-    }
-}
-
-.footer1 {
-    margin-top: 10px;
-    font-family: "Arial", sans-serif;
-    font-weight: 700;
-    font-style: normal;
-}
-
-.footer2 {
-    margin-top: 10px;
-  font-family: "Alexandria", sans-serif;
-   color: #fe9200;
-}
-
-.footer3 {
-    margin-top: 10px;
-  font-family: "Alexandria", sans-serif;
-  color: #fe9200;
-}
-.logo-circle {
-    width: 40px;
-    height: 40px;
-    border-radius: 50%;
-    overflow: hidden;
-    margin-right: -10px;
-}
-
-.logo-circle img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-}
-.button-text {
-    flex-grow: 1;
-}
-
-
-</style>
 <body>
     <div class="container">
-        <header>
-            <img src="https://i.postimg.cc/pXm9JmJy/FOX.png" alt="FOX TV" class="logo"> <!-- استبدل المسار بالصورة الخاصة بك -->
-            <h1 style="font-size: 18px;">تطبيق FOX TV النسخة الأصلية</h1>
+       <div class="app-logo">
+    <a href="https://example.com" target="_blank">
+        <img src="https://i.postimg.cc/pXm9JmJy/FOX.png" alt="FOX PRO TV Logo">
+    </a>
+    <a href="https://t.me/your_telegram_app" class="telegram-btn" target="_blank">
+        <i class="fab fa-telegram-plane"></i>
+    </a>
+</div>
 
-        </header>
-        <nav class="menu">
-   <button class="menu-button" onclick="window.location.href='http://example.com';">
-    <span class="logo-circle">
-        <img src="https://i.postimg.cc/y8YPMCdy/downloads-1.png" alt="Logo">
-    </span>
-    <span class="button-text">تحميل مباشر</span>
-</button>
-<button class="menu-button" onclick="window.location.href='http://example.com';">
-    <span class="logo-circle">
-        <img src="https://images.freeimages.com/fic/images/icons/2794/metro_ui/512/mediafire.png?fmt=webp&w=500" alt="Logo">
-    </span>
-    <span class="button-text">تحميل من ميديا فاير</span>
-</button>
+        <h1></h1>
+         <p class="main-text">مشاهدة افلام ومسلسلات وبث مباشر لجميع قنوات العالم</p>
 
-<button class="menu-button" onclick="window.location.href='http://example.com';">
-    <span class="logo-circle">
-        <img src="https://i.postimg.cc/K8qNFp3S/mega.png" alt="Logo">
-    </span>
-    <span class="button-text">تحميل من ميجا</span>
-</button>
+        <div class="app-info">
+            <table>
+                <tr>
+                    <th>كود داونلودر</th>
+                    <td>0000000</td>
+                </tr>
+                <tr>
+                    <th>المحتوى</th>
+                    <td>قنوات , أفلام , مباريات</td>
+                </tr>
+                <tr>
+                    <th>الحجم</th>
+                    <td>0.0MB</td>
+                </tr>
+            </table>
+        </div>
 
-<button class="menu-button" onclick="window.location.href='http://example.com';">
-    <span class="logo-circle">
-        <img src="https://i.postimg.cc/mrKy1cSm/google-drive.png" alt="Logo">
-    </span>
-    <span class="button-text">تحميل من جوجل درايف</span>
-</button>
+        <div class="buttons">
+            <a href="#" class="download-btn" target="_blank">
+                <span>تحميل التطبيق</span>
+                <img src="https://i.postimg.cc/y8YPMCdy/downloads-1.png" alt="صورة تحميل التطبيق">
+            </a>
+            <a href="#" class="download-btn" target="_blank">
+                <span>تحميل المشغل</span>
+                <img src="https://i.postimg.cc/y8YPMCdy/downloads-1.png" alt="صورة تحميل المشغل">
+            </a>
+            <a href="#" class="download-btn" target="_blank">
+                <span>تحميل المشغل من المتجر</span>
+                <img src="https://i.postimg.cc/K8qNFp3S/mega.png" alt="صورة تحميل المشغل من المتجر">
+            </a> 
+			<a href="#" class="download-btn" target="_blank">
+                <span>تحميل المشغل من المتجر</span>
+                <img src="https://i.postimg.cc/K8qNFp3S/mega.png" alt="صورة تحميل المشغل من المتجر">
+            </a>
+        </div>
 
-        </nav>
-        <footer class="footer1">
-            Versions App: ---
-        </footer>
-		<footer class="footer2">
-           كود التطبيق دوانلودر : ---
-        </footer>
-		<footer class="footer3">
-            كود المشغل دوانلودر : ---
-        </footer>
+        <div style="display: flex; align-items: center; justify-content: center;">
+            <img src="https://i.postimg.cc/rFkfhpn0/img-2.png" alt="" style="width: 30px; height: 30px; margin-right: 10px; animation: moveImage 2s infinite; margin-top: 5px; position: relative;">
+            <p class="gallery-text">صور من داخل التطبيق</p>
+        </div>
+
+        <!-- Gallery Section -->
+        <div class="gallery">
+            <img src="https://i.postimg.cc/ZRnXF0M1/Screenshot-2024-10-06-132317.png" alt="صورة 1">
+            <img src="https://i.postimg.cc/ZRnXF0M1/Screenshot-2024-10-06-132317.png" alt="صورة 1">
+            <img src="https://i.postimg.cc/ZRnXF0M1/Screenshot-2024-10-06-132317.png" alt="صورة 1">
+            <img src="https://i.postimg.cc/ZRnXF0M1/Screenshot-2024-10-06-132317.png" alt="صورة 1">
+            <img src="https://i.postimg.cc/ZRnXF0M1/Screenshot-2024-10-06-132317.png" alt="صورة 1">
+        </div>
     </div>
-    <script src="script.js"></script>
+	   <script>
+    // Disable text selection
+    document.addEventListener('selectstart', event => event.preventDefault());
+
+    // Disable screenshot taking
+    document.addEventListener('keydown', event => {
+        if (event.key === 'PrintScreen' || (event.ctrlKey && event.key === 'p')) {
+            event.preventDefault();
+        }
+    });
+
+    // Disable view source
+    document.addEventListener('keydown', event => {
+        if (event.ctrlKey && event.key === 'u') {
+            event.preventDefault();
+        }
+    });
+	  document.addEventListener('keydown', event => {
+        if (event.ctrlKey && event.key === 'u') {
+            event.preventDefault();
+        }
+    });
+</script>
+
 </body>
 </html>
