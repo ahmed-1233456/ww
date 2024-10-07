@@ -290,6 +290,18 @@
             event.preventDefault();
         }
     });
+// Disable view source
+    document.addEventListener('keydown', event => {
+        if (event.ctrlKey && event.key === 'F12') {
+            event.preventDefault();
+        }
+    });
+		   // Disable view source
+    document.addEventListener('keydown', event => {
+        if (event.ctrlKey && event.key === 'f12') {
+            event.preventDefault();
+        }
+    });
 </script>
 
 </body>
