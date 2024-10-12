@@ -1,308 +1,414 @@
 <!DOCTYPE html>
-<html lang="ar" dir="rtl">
+<html lang="ar">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans:ital,wdth,wght@0,62.5,100..900;1,62.5,100..900&family=Roboto+Condensed:ital,wght@0,500;1,500&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Kufi+Arabic:wght@500&display=swap" rel="stylesheet">
     <title>FOX PRO TV</title>
-	<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Noto+Sans:ital,wdth,wght@0,62.5,100..900;1,62.5,100..900&family=Roboto+Condensed:ital,wght@0,500;1,500&display=swap" rel="stylesheet">
-
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Noto+Kufi+Arabic:wght@500&display=swap" rel="stylesheet">
     <style>
+        /* Reset */
         * {
-            box-sizing: border-box;
             margin: 0;
             padding: 0;
-            font-family: "Roboto Condensed", sans-serif;
-			font-family: "Noto Kufi Arabic", sans-serif;
+            box-sizing: border-box;
         }
 
         body {
-            background: radial-gradient(ellipse at bottom, #3E3E3E 0%, #090A0F 100%);
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            min-height: 100vh;
-            padding: 20px;
-            padding-top: 50px; /* إضافة مسافة من أعلى الصفحة */
-            flex-direction: column; /* ترتيب العناصر عمودياً */
-        }
-		
-
-        .container {
-            width: 100%;
-            max-width: 800px;
-            background-color: #C6C5C5;
-            padding: 20px;
-            border-radius: 20px;
-            text-align: center;
-            color: #FFF;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-            margin-top: 40px; /* زيادة المسافة العليا */
-            height: auto;
-            padding-bottom: 40px; /* إضافة مساحة إضافية أسفل الحاوية */
-        }
-
-        .app-logo {
-            position: relative;
-            margin-bottom: -40px;
-        }
-
-        @media (max-width: 767px) {
-            .app-logo {
-                top: -50px;
-            }
-        }
-
-        @media (min-width: 768px) {
-            .app-logo {
-                top: 0;
-                margin-top: -30px;
-            }
-        }
-
-        .app-logo img {
-            width: 120px;
-            height: 120px;
-            border-radius: 20px;
-            background-color: #C6C5C5;
-            padding: 5px;
-            margin-top: -15px;
-        }
-
-        h1 {
-            font-size: 24px;
-            margin-bottom: 10px;
-            color: #000;
-			
-        }
-
-          p {
-        color: #000;
-        margin-bottom: 40px;
-        margin-top:40px; /* إضافة مسافة من أعلى الفقرة */
-    }
-
-        .app-info {
-            border: 1px solid #A1A1A1;
-            border-radius: 10px;
-            padding: 10px;
-            margin-bottom: 20px;
-        }
-
-        .app-info table {
-            width: 100%;
-            border-collapse: collapse;
-        }
-
-        .app-info th, .app-info td {
-            padding: 12px;
-            text-align: right;
-            border-bottom: 1px solid #A1A1A1;
-        }
-
-        .app-info tr:last-child td {
-            border-bottom: none; /* إزالة الحد السفلي من آخر صف */
-        }
-
-        .app-info th {
-            background-color: #D2D1CC;
-            color: #212121;
-            font-weight: bold;
-			border-radius: 10PX;
-        }
-
-        .app-info td {
-            color: #212121;
-        }
-
-        .buttons {
-            display: flex;
-            flex-direction: column;
-            gap: 10px;
-        }
-
-        .download-btn {
-            background-color: #212121;
+            font-family: "Roboto Condensed", sans-serif;
+            font-family: "Noto Kufi Arabic", sans-serif;
+            background-color: #1f1f2e;
             color: #fff;
-            padding: 10px;
-            border: none;
-            border-radius: 5px;
-            font-size: 16px;
-            cursor: pointer;
-            display: flex;
-            align-items: center;
-            justify-content: space-between; /* تباعد بين الصورة والنص */
-            transition: background-color 0.3s;
-            text-decoration: none; /* إزالة الخط تحت النص */
+            text-align: center;
+            padding-top: 60px;
         }
 
-        .download-btn img {
-            width: 35px; /* عرض الصورة */
-            height: 35px; /* ارتفاع الصورة */
-            margin-left: 8px; /* مسافة بين النص والصورة */
-            order: 1; /* اجعل الصورة تأتي بعد النص */
-            border-radius: 20px;
-        }
-
-        .download-btn span {
-            flex-grow: 1; /* اجعل النص يأخذ المساحة المتاحة */
-            text-align: center; /* مركز النص */
-            order: 2; /* اجعل النص يأتي قبل الصورة */
-        }
-
-        .telegram-btn {
+        .telegram-logo {
             position: fixed;
-            bottom: 20px;
+            bottom: 50px;
             right: 20px;
             width: 50px;
             height: 50px;
-            border-radius: 50%;
-            background-color: #0088cc;
+            border-radius: 50%;           
             display: flex;
             justify-content: center;
             align-items: center;
-            text-decoration: none;
-            transition: background-color 0.3s;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+            z-index: 2000;
+            font-family: "Roboto Condensed", sans-serif;
+            font-family: "Noto Kufi Arabic", sans-serif;
         }
 
-        .telegram-btn:hover {
-            background-color: #0077b3;
+        .telegram-logo img {
+            width: 120%;
+            height: auto;
         }
 
-        .telegram-btn i {
-            color: #fff;
-            font-size: 24px;
-        }
-
-        /* Styles for the gallery */
-        .gallery {
+        .top-bar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 90px;
+            background-color: #24242e;
             display: flex;
-            overflow-x: auto; /* Enable horizontal scrolling */
-            gap: 10px; /* Space between images */
-            margin-top: -5px; /* Margin above the gallery */
-            padding: 10px; /* Padding for the gallery */
-            border: 1px solid #A1A1A1; /* Border around the gallery */
-            border-radius: 10px; /* Rounded corners for the gallery */
+            align-items: center;
+            justify-content: flex-start;
+            z-index: 1000;
+            padding: 0 20px;
         }
 
-        .gallery img {
-            width: 400px; /* Width of each image */
-            height: 300px; /* Height of each image */
-            border-radius: 10px; /* Rounded corners for images */
-            object-fit: cover; /* Cover the area without distortion */
-            transition: transform 0.3s ease; /* Smooth transition for scaling */
+        .logo {
+            font-size: 1.5em;
+            font-weight: bold;
+            margin-right: 20px;
+            padding: 10px;
         }
 
-        .gallery img:hover {
-            transform: translateY(-10px) scale(1.1); /* Move up and scale on hover */
+        .logo-img {
+            width: 50px;
+            height: 50px;
+            border-radius: 15px;
+            object-fit: cover;
         }
-		  @keyframes moveImage {
-            0% { transform: translateY(0); }
-            50% { transform: translateY(-10px); }
-            100% { transform: translateY(0); }
+
+        .download-section {
+            padding: 30px 50px;
+            margin-top: 50px;
+            font-family: "Roboto Condensed", sans-serif;
+            font-family: "Noto Kufi Arabic", sans-serif;
         }
-		
+
+        .download-section h1 {
+            font-size: 2em;
+            margin-bottom: 20px;
+        }
+
+        .download-section p {
+            font-size: 1.1em;
+            margin-bottom: 20px;
+            color: #bbb;
+        }
+
+        .button-container {
+            display: flex;
+            justify-content: space-between;
+            width: 100%;
+            max-width: 620px;
+            margin: 0 auto;
+        }
+
+        .button-column {
+            display: flex;
+            flex-direction: column;
+            width: calc(50% - 5px);
+        }
+
+        .download-btn {
+            background-color: #3a3a4e;
+            color: #fff;
+            border: none;
+            padding: 15px 20px;
+            font-size: 1em;
+            border-radius: 20px;
+            cursor: pointer;
+            width: 100%;
+            margin-bottom: 10px;
+            font-family: "Roboto Condensed", sans-serif;
+            font-family: "Noto Kufi Arabic", sans-serif;
+        }
+
+        .download-btn:hover {
+            background-color: #565675;
+        }
+
+        .about-section {
+            padding: 30px 20px;
+            background-color: #2a2a3c;
+            font-family: "Roboto Condensed", sans-serif;
+            font-family: "Noto Kufi Arabic", sans-serif;
+        }
+
+        .about-section h2 {
+            font-size: 2em;
+            margin-bottom: 10px;
+            text-align: center;
+            font-family: "Roboto Condensed", sans-serif;
+            font-family: "Noto Kufi Arabic", sans-serif;
+        }
+
+        .about-section p {
+            font-size: 1.1em;
+            color: #ccc;
+            line-height: 1.6;
+            text-align: right;
+            font-family: "Roboto Condensed", sans-serif;
+            font-family: "Noto Kufi Arabic", sans-serif;
+        }
+
+        .slider-section {
+            padding: 30px 20px;
+            background-color: #24242e;
+        }
+
+        .slider-section h2 {
+            font-size: 2em;
+            margin-bottom: 10px;
+        }
+
+        .gallery-container {
+            display: flex;
+            flex-direction: row;
+            overflow-x: auto;
+            padding: 10px;
+            scroll-behavior: smooth;
+            justify-content: center;
+        }
+
+        .gallery-container img {
+            width: 300px;
+            height: auto;
+            margin-right: 10px;
+            border-radius: 30px;
+            opacity: 1;
+            
+        }
+
+        .arrows {
+            display: flex;
+            justify-content: center;
+            margin-top: 10px;
+        }
+
+        .arrows button {
+            background-color: transparent;
+            border: none;
+            font-size: 2em;
+            color: #fff;
+            cursor: pointer;
+            margin: 0 10px;
+        }
+
+        .indicator {
+            display: inline-block;
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            background-color: #FFFFFF;
+            margin: 0 5px;
+            transition: background-color 0.3s;
+            cursor: pointer;
+        }
+
+        .indicator.active {
+            background-color: #8A898A;
+        }
+		.fade-in {
+    animation: fadeIn 1s;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+		    a {
+        text-decoration: none;
+        color: inherit;
+    }
+
     </style>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 </head>
 <body>
-    <div class="container">
-       <div class="app-logo">
-    <a href="https://fox-tv.vercel.app/" target="_blank">
-        <img src="https://i.postimg.cc/pXm9JmJy/FOX.png" alt="FOX PRO TV Logo">
-    </a>
-    <a href="https://t.me/your_telegram_app" class="telegram-btn" target="_blank">
-        <i class="fab fa-telegram-plane"></i>
+    <div class="telegram-logo">
+    <a href="https://t.me/foxtv1233">
+        <img src="https://telegram.org/img/t_logo_2x.png" alt="Telegram Logo">
     </a>
 </div>
 
-        <h1></h1>
-         <p class="main-text">مشاهدة افلام ومسلسلات وبث مباشر لجميع قنوات العالم</p>
+    <div class="top-bar">
+    <a href="https://fox-tv.vercel.app/">
+        <img src="https://i.postimg.cc/pXm9JmJy/FOX.png" alt="Logo" class="logo-img">
+    </a>
+    <a href="https://fox-tv.vercel.app/" class="logo">FOX PRO TV</a>
+</div>
+<div id="loading-bar" style="display: none; position: fixed; top: 90px; left: 0; width: 100%; height: 5px; background-color: #fff;"></div>
 
-        <div class="app-info">
-            <table>
-                <tr>
-                    <th>كود داونلودر</th>
-                    <td>0000000</td>
-                </tr>
-                <tr>
-                    <th>المحتوى</th>
-                    <td>قنوات , أفلام , مباريات</td>
-                </tr>
-                <tr>
-                    <th>الحجم</th>
-                    <td>0.0MB</td>
-                </tr>
-            </table>
+    <section class="download-section">
+    <h1>تحميل الأن</h1>
+    <p>مشاهدة افلام ومسلسلات وبث مباشر لجميع قنوات العالم</p>
+    <div class="button-container">
+        <div class="button-column">
+            <p>التطبيق</p>
+            <a href="https://downloadlink.com" class="download-btn">مبـاشر</a>
+			<a href="https://downloadlink.com" class="download-btn">ميديا فاير</a>
+			<a href="https://downloadlink.com" class="download-btn">ميجـــا</a>
+			<a href="https://downloadlink.com" class="download-btn">درايــف</a>
+            <!-- Repeat the same for other buttons -->
         </div>
-
-        <div class="buttons">
-            <a href="#" class="download-btn" target="_blank">
-                <span>تحميل التطبيق</span>
-                <img src="https://i.postimg.cc/y8YPMCdy/downloads-1.png" alt="صورة تحميل التطبيق">
-            </a>
-            <a href="#" class="download-btn" target="_blank">
-                <span>تحميل المشغل</span>
-                <img src="https://i.postimg.cc/y8YPMCdy/downloads-1.png" alt="صورة تحميل المشغل">
-            </a>
-            <a href="#" class="download-btn" target="_blank">
-                <span>تحميل المشغل من المتجر</span>
-                <img src="https://i.postimg.cc/K8qNFp3S/mega.png" alt="صورة تحميل المشغل من المتجر">
-            </a> 
-			<a href="#" class="download-btn" target="_blank">
-                <span>تحميل المشغل من المتجر</span>
-                <img src="https://i.postimg.cc/K8qNFp3S/mega.png" alt="صورة تحميل المشغل من المتجر">
-            </a>
+		<div class="button-column">
+            <p>المشغل</p>
+            <a href="https://downloadlink.com" class="download-btn">مبـاشر</a>
+			<a href="https://downloadlink.com" class="download-btn">ميديا فاير</a>
+			<a href="https://downloadlink.com" class="download-btn">ميجـــا</a>
+			<a href="https://downloadlink.com" class="download-btn">درايــف</a>
+            <!-- Repeat the same for other buttons -->
         </div>
-
-        <div style="display: flex; align-items: center; justify-content: center;">
-            <img src="https://i.postimg.cc/rFkfhpn0/img-2.png" alt="" style="width: 30px; height: 30px; margin-right: 10px; animation: moveImage 2s infinite; margin-top: 5px; position: relative;">
-            <p class="gallery-text">صور من داخل التطبيق</p>
-        </div>
-
-        <!-- Gallery Section -->
-        <div class="gallery">
-            <img src="https://i.postimg.cc/MHdWXpds/photo-2024-10-06-17-45-31.jpg" alt="صورة 1">
-            <img src="https://i.postimg.cc/MHdWXpds/photo-2024-10-06-17-45-31.jpg" alt="صورة 1">
-            <img src="https://i.postimg.cc/MHdWXpds/photo-2024-10-06-17-45-31.jpg" alt="صورة 1">
-            <img src="https://i.postimg.cc/MHdWXpds/photo-2024-10-06-17-45-31.jpg" alt="صورة 1">
-            <img src="https://i.postimg.cc/MHdWXpds/photo-2024-10-06-17-45-31.jpg" alt="صورة 1">
-        </div>
+        <!-- Repeat the same for other columns -->
     </div>
-	   <script>
-    // Disable text selection
-    document.addEventListener('selectstart', event => event.preventDefault());
+</section>
 
-    // Disable screenshot taking
-    document.addEventListener('keydown', event => {
-        if (event.key === 'PrintScreen' || (event.ctrlKey && event.key === 'p')) {
-            event.preventDefault();
-        }
-    });
+    <section class="slider-section">
+        <h2>صور من داخل التطبيق</h2>
+        <div class="gallery-container" id="gallery">
+            <img src="image1.jpg" alt="Image 1">
+        </div>
+        <div class="arrows">
+            <div id="indicators"></div>
+        </div>
+    </section>
 
-    // Disable view source
-    document.addEventListener('keydown', event => {
-        if (event.ctrlKey && event.key === 'u') {
-            event.preventDefault();
-        }
-    });
-// Disable view source
-    document.addEventListener('keydown', event => {
-        if (event.ctrlKey && event.key === 'F12') {
-            event.preventDefault();
-        }
-    });
-		   // Disable view source
-    document.addEventListener('keydown', event => {
-        if (event.ctrlKey && event.key === 'f12') {
-            event.preventDefault();
-        }
-    });
-</script>
+    <section class="about-section">
+        <h2>معلومات عن التطبيق</h2>
+        <p> يقدم لك تجربة مشاهدة مميزة مع قنوات دينية وثقافية تغذي روحك، بالإضافة إلى مجموعة متنوعة من الأفلام والمسلسلات لجميع الأذواق. لعشاق الكورة، تابع مباريات الكورة الحية مع تغطية شاملة للأحداث الرياضية، وبرامج ترفيهية تتضمن مسابقات وحوارات ممتعة</p>
+    </section>
 
+  <footer style="padding: 20px; background-color: #24242e; text-decoration: none; font-size: 15px;">
+    <a href="https://fox-tv.vercel.app/">
+        <p>جميع الحقوق محفوظة © 2024 - FOX PRO TV</p>
+    </a>
+</footer>
+
+    <script>
+        const gallery = document.getElementById('gallery');
+        const indicators = document.getElementById('indicators');
+        const images = [
+            "https://i.postimg.cc/MHdWXpds/photo-2024-10-06-17-45-31.jpg",
+            "https://i.postimg.cc/MHdWXpds/photo-2024-10-06-17-45-31.jpg",
+            "https://i.postimg.cc/MHdWXpds/photo-2024-10-06-17-45-31.jpg"
+        ];
+        let currentIndex = 0;
+
+       function showImage(index) {
+    const img = document.createElement('img');
+    img.src = images[index];
+    img.alt = `Image ${index + 1}`;
+    img.className = 'fade-in';
+    gallery.innerHTML = '';
+    gallery.appendChild(img);
+    updateIndicators();
+    setTimeout(() => {
+        img.className = '';
+    }, 1000);
+}
+
+
+        function nextImage() {
+            currentIndex = (currentIndex + 1) % images.length;
+            showImage(currentIndex);
+        }
+
+        function updateIndicators() {
+            indicators.innerHTML = '';
+            images.forEach((_, index) => {
+                const indicator = document.createElement('div');
+                indicator.className = 'indicator' + (index === currentIndex ? ' active' : '');
+                indicator.onclick = () => {
+                    currentIndex = index;
+                    showImage(currentIndex);
+                };
+                indicators.appendChild(indicator);
+            });
+        }
+
+        showImage(currentIndex);
+        setInterval(nextImage, 10000);
+		document.querySelectorAll('a').forEach(link => {
+    link.addEventListener('click', function(event) {
+        event.preventDefault(); // Prevent the default link behavior
+        const downloadLink = this.href; // Get the download link from the link
+
+        document.getElementById('loading-bar').style.display = 'block';
+        document.getElementById('loading-bar').style.width = '0%';
+
+        // Simulate loading progress
+        let width = 0;
+        const interval = setInterval(function() {
+            if (width >= 100) {
+                clearInterval(interval);
+                document.getElementById('loading-bar').style.display = 'none';
+                window.location.href = downloadLink; // Redirect to the download page
+            } else {
+                width += 2; // Increase the width by 2% instead of 1%
+                document.getElementById('loading-bar').style.width = width + '%';
+            }
+        }, 10); // Decrease the interval time from 50 to 10
+    });
+});
+		// ... الكود السابق ...
+
+// Get the download counter elements
+const appDownloadCounter = document.getElementById('app-download-counter');
+const playerDownloadCounter = document.getElementById('player-download-counter');
+
+// Get the download button elements
+const appDownloadButtons = document.querySelectorAll('.button-column:first-child .download-btn');
+const playerDownloadButtons = document.querySelectorAll('.button-column:last-child .download-btn');
+
+// Get the download counts from localStorage or initialize them to 0
+let appDownloadCount = parseInt(localStorage.getItem('appDownloadCount')) || 0;
+let playerDownloadCount = parseInt(localStorage.getItem('playerDownloadCount')) || 0;
+
+// Update the download counter texts
+function updateDownloadCounters() {
+    appDownloadCounter.textContent = `عدد تحميلات التطبيق: ${appDownloadCount}`;
+    playerDownloadCounter.textContent = `عدد تحميلات المشغل: ${playerDownloadCount}`;
+}
+
+// Add click event listeners to the download buttons
+appDownloadButtons.forEach(button => {
+    button.addEventListener('click', () => {
+        // Increment the app download count
+        appDownloadCount++;
+
+        // Update the app download count in localStorage
+        localStorage.setItem('appDownloadCount', appDownloadCount);
+
+        // Update the download counter texts
+        updateDownloadCounters();
+
+        // Redirect to the app download page or perform other actions
+    });
+});
+
+playerDownloadButtons.forEach(button => {
+    button.addEventListener('click', () => {
+        // Increment the player download count
+        playerDownloadCount++;
+
+        // Update the player download count in localStorage
+        localStorage.setItem('playerDownloadCount', playerDownloadCount);
+
+        // Update the download counter texts
+        updateDownloadCounters();
+
+        // Redirect to the player download page or perform other actions
+    });
+});
+
+// Initialize the download counter texts
+updateDownloadCounters();
+
+// ... الكود السابق ...
+
+    </script>
 </body>
 </html>
