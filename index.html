@@ -1,1 +1,418 @@
-الصفحة تحت الصيانة 
+<!DOCTYPE html>
+<html lang="ar">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans:ital,wdth,wght@0,62.5,100..900;1,62.5,100..900&family=Roboto+Condensed:ital,wght@0,500;1,500&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Kufi+Arabic:wght@500&display=swap" rel="stylesheet">
+	<script src="https://www.gstatic.com/firebasejs/9.6.0/firebase-app.js"></script>
+<script src="https://www.gstatic.com/firebasejs/9.6.0/firebase-database.js"></script>
+
+    <title>FOX PRO TV</title>
+    <style>
+        /* Reset */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: "Roboto Condensed", sans-serif;
+            font-family: "Noto Kufi Arabic", sans-serif;
+            background-color: #1f1f2e;
+            color: #fff;
+            text-align: center;
+            padding-top: 60px;
+        }
+
+        .telegram-logo {
+            position: fixed;
+            bottom: 50px;
+            right: 20px;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;           
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+            z-index: 2000;
+            font-family: "Roboto Condensed", sans-serif;
+            font-family: "Noto Kufi Arabic", sans-serif;
+        }
+
+        .telegram-logo img {
+            width: 120%;
+            height: auto;
+        }
+
+        .top-bar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 90px;
+            background-color: #24242e;
+            display: flex;
+            align-items: center;
+            justify-content: flex-start;
+            z-index: 1000;
+            padding: 0 20px;
+        }
+
+        .logo {
+            font-size: 1.5em;
+            font-weight: bold;
+            margin-right: 20px;
+            padding: 10px;
+        }
+
+        .logo-img {
+            width: 50px;
+            height: 50px;
+            border-radius: 15px;
+            object-fit: cover;
+        }
+
+        .download-section {
+            padding: 30px 50px;
+            margin-top: 50px;
+            font-family: "Roboto Condensed", sans-serif;
+            font-family: "Noto Kufi Arabic", sans-serif;
+        }
+
+        .download-section h1 {
+            font-size: 2em;
+            margin-bottom: 20px;
+        }
+
+        .download-section p {
+            font-size: 1.1em;
+            margin-bottom: 20px;
+            color: #bbb;
+        }
+
+        .button-container {
+            display: flex;
+            justify-content: space-between;
+            width: 100%;
+            max-width: 620px;
+            margin: 0 auto;
+        }
+
+        .button-column {
+            display: flex;
+            flex-direction: column;
+            width: calc(50% - 5px);
+        }
+
+        .download-btn {
+            background-color: #3a3a4e;
+            color: #fff;
+            border: none;
+            padding: 15px 20px;
+            font-size: 1em;
+            border-radius: 20px;
+            cursor: pointer;
+            width: 100%;
+            margin-bottom: 10px;
+            font-family: "Roboto Condensed", sans-serif;
+            font-family: "Noto Kufi Arabic", sans-serif;
+        }
+
+        .download-btn:hover {
+            background-color: #565675;
+        }
+
+        .about-section {
+            padding: 30px 20px;
+            background-color: #2a2a3c;
+            font-family: "Roboto Condensed", sans-serif;
+            font-family: "Noto Kufi Arabic", sans-serif;
+        }
+
+        .about-section h2 {
+            font-size: 2em;
+            margin-bottom: 10px;
+            text-align: center;
+            font-family: "Roboto Condensed", sans-serif;
+            font-family: "Noto Kufi Arabic", sans-serif;
+        }
+
+        .about-section p {
+            font-size: 1.1em;
+            color: #ccc;
+            line-height: 1.6;
+            text-align: right;
+            font-family: "Roboto Condensed", sans-serif;
+            font-family: "Noto Kufi Arabic", sans-serif;
+        }
+
+        .slider-section {
+            padding: 30px 20px;
+            background-color: #24242e;
+        }
+
+        .slider-section h2 {
+            font-size: 2em;
+            margin-bottom: 10px;
+        }
+
+        .gallery-container {
+            display: flex;
+            flex-direction: row;
+            overflow-x: auto;
+            padding: 10px;
+            scroll-behavior: smooth;
+            justify-content: center;
+        }
+
+        .gallery-container img {
+            width: 300px;
+            height: auto;
+            margin-right: 10px;
+            border-radius: 30px;
+            opacity: 1;
+            
+        }
+
+        .arrows {
+            display: flex;
+            justify-content: center;
+            margin-top: 10px;
+        }
+
+        .arrows button {
+            background-color: transparent;
+            border: none;
+            font-size: 2em;
+            color: #fff;
+            cursor: pointer;
+            margin: 0 10px;
+        }
+
+        .indicator {
+            display: inline-block;
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            background-color: #FFFFFF;
+            margin: 0 5px;
+            transition: background-color 0.3s;
+            cursor: pointer;
+        }
+
+        .indicator.active {
+            background-color: #8A898A;
+        }
+		.fade-in {
+    animation: fadeIn 1s;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+		    a {
+        text-decoration: none;
+        color: inherit;
+    }
+
+    </style>
+</head>
+<body>
+    <div class="telegram-logo">
+    <a href="https://t.me/foxtv1233">
+        <img src="https://telegram.org/img/t_logo_2x.png" alt="Telegram Logo">
+    </a>
+</div>
+
+    <div class="top-bar">
+    <a href="https://fox-tv.vercel.app/">
+        <img src="https://i.postimg.cc/pXm9JmJy/FOX.png" alt="Logo" class="logo-img">
+    </a>
+    <a href="https://fox-tv.vercel.app/" class="logo">FOX PRO TV</a>
+</div>
+<div id="loading-bar" style="display: none; position: fixed; top: 90px; left: 0; width: 100%; height: 5px; background-color: #fff;"></div>
+
+    <section class="download-section">
+    <h1>تحميل الأن</h1>
+    <p>مشاهدة افلام ومسلسلات وبث مباشر لجميع قنوات العالم</p>
+    <div class="button-container">
+        <div class="button-column">
+            <p>التطبيق</p>
+            <a href="https://drive.google.com/uc?export=download&id=1ApKSUD8CKyAi_ocz6Z5rHo6hg9pAqp0C" class="download-btn">مبـاشر</a>
+			<a href="https://www.mediafire.com/file/1g1c7u6x4ipv07c/Fox+Pro+Tv.apk/file" class="download-btn">ميديا فاير</a>
+			<a href="https://mega.nz/file/g2kUGCxD#6O7-wW8sB85kXO4d4jALfU3n1VxjeVAlBrUfTkNlrds" class="download-btn">ميجـــا</a>
+			<a href="https://drive.google.com/file/d/1ApKSUD8CKyAi_ocz6Z5rHo6hg9pAqp0C/view?usp=sharing" class="download-btn">درايــف</a>
+            <!-- Repeat the same for other buttons -->
+        </div>
+		<div class="button-column">
+            <p>المشغل</p>
+            <a href="https://drive.google.com/uc?export=download&id=1DRb9PHzIT_SF5GlL5eoOLRREi0kC9Nw-" class="download-btn">مبـاشر</a>
+			<a href="https://www.mediafire.com/file/u6tsi1dkgbgmj8g/Max+Player.apk/file" class="download-btn">ميديا فاير</a>
+			<a href="https://mega.nz/file/guETGQLa#G0MH2rPY9ZbCQj1M41QC_GHQwdGRC0aoutpEnUCDQcg" class="download-btn">ميجـــا</a>
+			<a href="https://drive.google.com/file/d/1DRb9PHzIT_SF5GlL5eoOLRREi0kC9Nw-/view?usp=sharing" class="download-btn">درايــف</a>
+            <!-- Repeat the same for other buttons -->
+        </div>
+        <!-- Repeat the same for other columns -->
+    </div>
+</section>
+
+    <section class="slider-section">
+        <h2>صور من داخل التطبيق</h2>
+        <div class="gallery-container" id="gallery">
+            <img src="image1.jpg" alt="Image 1">
+        </div>
+        <div class="arrows">
+            <div id="indicators"></div>
+        </div>
+    </section>
+
+    <section class="about-section">
+        <h2>معلومات عن التطبيق</h2>
+        <p> يقدم لك تجربة مشاهدة مميزة مع قنوات دينية وثقافية تغذي روحك، بالإضافة إلى مجموعة متنوعة من الأفلام والمسلسلات لجميع الأذواق. لعشاق الكورة، تابع مباريات الكورة الحية مع تغطية شاملة للأحداث الرياضية، وبرامج ترفيهية تتضمن مسابقات وحوارات ممتعة</p>
+    </section>
+
+  <footer style="padding: 20px; background-color: #24242e; text-decoration: none; font-size: 15px;">
+    <a href="https://fox-tv.vercel.app/">
+        <p>جميع الحقوق محفوظة © 2024 - FOX PRO TV</p>
+    </a>
+</footer>
+
+    <script>
+        const gallery = document.getElementById('gallery');
+        const indicators = document.getElementById('indicators');
+        const images = [
+            "https://i.postimg.cc/MHdWXpds/photo-2024-10-06-17-45-31.jpg",
+            "https://i.postimg.cc/SRjLD8P6/photo-2024-10-14-02-44-32.jpg",
+			"https://i.postimg.cc/j29H92VG/photo-2024-10-14-02-44-29.jpg",
+            "https://i.postimg.cc/DfYPmjWB/photo-2024-10-14-02-44-34.jpg"
+        ];
+        let currentIndex = 0;
+
+       function showImage(index) {
+    const img = document.createElement('img');
+    img.src = images[index];
+    img.alt = `Image ${index + 1}`;
+    img.className = 'fade-in';
+    gallery.innerHTML = '';
+    gallery.appendChild(img);
+    updateIndicators();
+    setTimeout(() => {
+        img.className = '';
+    }, 1000);
+}
+
+
+        function nextImage() {
+            currentIndex = (currentIndex + 1) % images.length;
+            showImage(currentIndex);
+        }
+
+        function updateIndicators() {
+            indicators.innerHTML = '';
+            images.forEach((_, index) => {
+                const indicator = document.createElement('div');
+                indicator.className = 'indicator' + (index === currentIndex ? ' active' : '');
+                indicator.onclick = () => {
+                    currentIndex = index;
+                    showImage(currentIndex);
+                };
+                indicators.appendChild(indicator);
+            });
+        }
+
+        showImage(currentIndex);
+        setInterval(nextImage, 10000);
+		document.querySelectorAll('a').forEach(link => {
+    link.addEventListener('click', function(event) {
+        event.preventDefault(); // Prevent the default link behavior
+        const downloadLink = this.href; // Get the download link from the link
+
+        document.getElementById('loading-bar').style.display = 'block';
+        document.getElementById('loading-bar').style.width = '0%';
+
+        // Simulate loading progress
+        let width = 0;
+        const interval = setInterval(function() {
+            if (width >= 100) {
+                clearInterval(interval);
+                document.getElementById('loading-bar').style.display = 'none';
+                window.location.href = downloadLink; // Redirect to the download page
+            } else {
+                width += 2; // Increase the width by 2% instead of 1%
+                document.getElementById('loading-bar').style.width = width + '%';
+            }
+        }, 10); // Decrease the interval time from 50 to 10
+    });
+});
+		// ... الكود السابق ...
+
+// Get the download counter elements
+const appDownloadCounter = document.getElementById('app-download-counter');
+const playerDownloadCounter = document.getElementById('player-download-counter');
+
+// Get the download button elements
+const appDownloadButtons = document.querySelectorAll('.button-column:first-child .download-btn');
+const playerDownloadButtons = document.querySelectorAll('.button-column:last-child .download-btn');
+
+// Get the download counts from localStorage or initialize them to 0
+let appDownloadCount = parseInt(localStorage.getItem('appDownloadCount')) || 0;
+let playerDownloadCount = parseInt(localStorage.getItem('playerDownloadCount')) || 0;
+
+// Update the download counter texts
+function updateDownloadCounters() {
+    appDownloadCounter.textContent = `عدد تحميلات التطبيق: ${appDownloadCount}`;
+    playerDownloadCounter.textContent = `عدد تحميلات المشغل: ${playerDownloadCount}`;
+}
+
+// Add click event listeners to the download buttons
+appDownloadButtons.forEach(button => {
+    button.addEventListener('click', () => {
+        // Increment the app download count
+        appDownloadCount++;
+
+        // Update the app download count in localStorage
+        localStorage.setItem('appDownloadCount', appDownloadCount);
+
+        // Update the download counter texts
+        updateDownloadCounters();
+
+        // Redirect to the app download page or perform other actions
+    });
+});
+
+playerDownloadButtons.forEach(button => {
+    button.addEventListener('click', () => {
+        // Increment the player download count
+        playerDownloadCount++;
+
+        // Update the player download count in localStorage
+        localStorage.setItem('playerDownloadCount', playerDownloadCount);
+
+        // Update the download counter texts
+        updateDownloadCounters();
+
+        // Redirect to the player download page or perform other actions
+    });
+});
+
+// Initialize the download counter texts
+updateDownloadCounters();
+
+// ... الكود السابق ...
+
+    </script>
+</body>
+</html>
