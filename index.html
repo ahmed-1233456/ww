@@ -1,13 +1,71 @@
-<script>
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>مشغل الفيديو مع DRM</title>
+    <!-- تضمين ملفات CSS -->
+    <link href="https://me-static.beinstatic.com/diva/assets/style/diva5.css?version=1.0.1" rel="stylesheet">
+</head>
+<body>
+    <div>
+        <!-- عنصر مشغل الفيديو -->
+        <video
+            id="video-player"
+            class="diva-video"
+            preload="metadata"
+            webkit-playsinline
+            playsinline
+            crossorigin="anonymous"
+            controls>
+        </video>
+    </div>
 
-window.onload = function() {
+    <!-- تضمين مكتبة Shaka Player -->
+    <script src="https://me-static.beinstatic.com/diva/assets/scripts/shaka-player/4.10.6/shaka-player.compiled.js?version=4.10.6" async defer></script>
 
-  setTimeout(function() {
+    <!-- كود JavaScript لتطبيق الإعدادات -->
+    <script>
+        document.addEventListener('DOMContentLoaded', async () => {
+            const videoElement = document.getElementById('video-player');
 
-    window.location.href = "https://tofi-xtv.net";
+            if (shaka.Player.isBrowserSupported()) {
+                const player = new shaka.Player(videoElement);
 
-  }, 0);
+                // إعداد تراخيص DRM
+                const drmConfig = {
+                    servers: {
+                        'com.widevine.alpha': 'https://lic.drmtoday.com/license-proxy-widevine/cenc/?specConform=true',
+                        'com.microsoft.playready': 'https://lic.drmtoday.com/license-proxy-headerauth/drmtoday/RightsManager.asmx',
+                        'com.apple.fps.1_0': 'https://lic.drmtoday.com/license-server-fairplay/'
+                    }
+                };
 
-};
+                // تكوين إعدادات المشغل
+                player.configure({
+                    drm: drmConfig,
+                    streaming: {
+                        bufferingGoal: 10,
+                        rebufferingGoal: 5,
+                        retryParameters: {
+                            maxAttempts: 3,
+                            baseDelay: 1000,
+                            backoffFactor: 2
+                        }
+                    }
+                });
 
-</script>
+                try {
+                    // تحميل الفيديو باستخدام DASH
+                    await player.load('https://ssc-3-enc.edgenextcdn.net/out/v1/42e86125555242aaa2a12056832e7814/index.mpd');
+                    console.log('تم تحميل الفيديو بنجاح');
+                } catch (error) {
+                    console.error('حدث خطأ أثناء تحميل الفيديو:', error);
+                }
+            } else {
+                console.error('Shaka Player غير مدعوم في هذا المتصفح.');
+            }
+        });
+    </script>
+</body>
+</html>
