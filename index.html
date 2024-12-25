@@ -1,71 +1,71 @@
 <!DOCTYPE html>
-<html lang="ar" dir="rtl">
+<html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>مشغل الفيديو مع DRM</title>
-    <!-- تضمين ملفات CSS -->
-    <link href="https://me-static.beinstatic.com/diva/assets/style/diva5.css?version=1.0.1" rel="stylesheet">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>مشغل M3U8</title>
+  <link href="https://vjs.zencdn.net/8.5.2/video-js.css" rel="stylesheet">
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      text-align: center;
+      margin: 20px;
+    }
+    #player-container {
+      max-width: 800px;
+      margin: 0 auto;
+    }
+  </style>
 </head>
 <body>
-    <div>
-        <!-- عنصر مشغل الفيديو -->
-        <video
-            id="video-player"
-            class="diva-video"
-            preload="metadata"
-            webkit-playsinline
-            playsinline
-            crossorigin="anonymous"
-            controls>
-        </video>
-    </div>
+  <h1>مشغل يدعم M3U8</h1>
+  <div id="player-container">
+    <video
+      id="video-player"
+      class="video-js vjs-default-skin"
+      controls
+      preload="auto"
+      width="800"
+      height="450"
+      data-setup='{}'>
+    </video>
+  </div>
+  <script src="https://vjs.zencdn.net/8.5.2/video.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/videojs-contrib-hls/dist/videojs-contrib-hls.min.js"></script>
+  <script>
+    // إعدادات المشغل
+    const player = videojs('video-player', {
+      autoplay: false,
+      controls: true,
+      responsive: true,
+      fluid: true
+    });
 
-    <!-- تضمين مكتبة Shaka Player -->
-    <script src="https://me-static.beinstatic.com/diva/assets/scripts/shaka-player/4.10.6/shaka-player.compiled.js?version=4.10.6" async defer></script>
+    // إضافة رابط الفيديو مع الخيارات المخصصة
+    function setVideoSource(url, referer, userAgent, origin) {
+      const options = {
+        src: url,
+        type: 'application/x-mpegURL',
+        withCredentials: true, // لتفعيل إضافة Headers مخصصة
+        // إضافة Custom Headers
+        headers: {
+          'Referer': referer,
+          'User-Agent': userAgent,
+          'Origin': origin
+        }
+      };
 
-    <!-- كود JavaScript لتطبيق الإعدادات -->
-    <script>
-        document.addEventListener('DOMContentLoaded', async () => {
-            const videoElement = document.getElementById('video-player');
+      player.src(options);
+      player.play();
+    }
 
-            if (shaka.Player.isBrowserSupported()) {
-                const player = new shaka.Player(videoElement);
+    // مثال لاستخدام الدالة مع رابط m3u8
+    const exampleUrl = 'https://xyzdddd.mizhls.ru/lb/premium91/index.m3u8';
+    const exampleReferer = 'https://lewblivehdplay.ru/';
+    const exampleUserAgent = 'Mozilla/5.0 (iPhone; CPU iPhone OS 13_2_3 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/13.0.3 Mobile/15E148 Safari/604.1';
+    const exampleOrigin = 'https://example.com';
 
-                // إعداد تراخيص DRM
-                const drmConfig = {
-                    servers: {
-                        'com.widevine.alpha': 'https://lic.drmtoday.com/license-proxy-widevine/cenc/?specConform=true',
-                        'com.microsoft.playready': 'https://lic.drmtoday.com/license-proxy-headerauth/drmtoday/RightsManager.asmx',
-                        'com.apple.fps.1_0': 'https://lic.drmtoday.com/license-server-fairplay/'
-                    }
-                };
-
-                // تكوين إعدادات المشغل
-                player.configure({
-                    drm: drmConfig,
-                    streaming: {
-                        bufferingGoal: 10,
-                        rebufferingGoal: 5,
-                        retryParameters: {
-                            maxAttempts: 3,
-                            baseDelay: 1000,
-                            backoffFactor: 2
-                        }
-                    }
-                });
-
-                try {
-                    // تحميل الفيديو باستخدام DASH
-                    await player.load('https://vod-d-01-todtv-da.akamaized.net/Content/DASH/VOD/12808/19044/2ee191d4-73ad-4afe-80d9-349d44c85ba7/891c6d21-c7da-617f-8398-6deddcb8a970/manifest.mpd?hdnts=st=1734974923~exp=1734989323~acl=/Content/DASH/VOD/12808/19044/2ee191d4-73ad-4afe-80d9-349d44c85ba7/891c6d21-c7da-617f-8398-6deddcb8a970/*~id=c3ef8251-525f-4b9c-8387-820a140a9351~data=4b46249d-973b-4f25-82a0-05c0fa266e21~hmac=1920e3ca897db0c5de761bd413721c00f43fc03be38c0a999c2b3bb1d578d798&hdcore=2.11.3');
-                    console.log('تم تحميل الفيديو بنجاح');
-                } catch (error) {
-                    console.error('حدث خطأ أثناء تحميل الفيديو:', error);
-                }
-            } else {
-                console.error('Shaka Player غير مدعوم في هذا المتصفح.');
-            }
-        });
-    </script>
+    setVideoSource(exampleUrl, exampleReferer, exampleUserAgent, exampleOrigin);
+  </script>
 </body>
 </html>
