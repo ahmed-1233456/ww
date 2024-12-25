@@ -1,71 +1,70 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>مشغل M3U8</title>
-  <link href="https://vjs.zencdn.net/8.5.2/video-js.css" rel="stylesheet">
+<!doctype html>
+<html lang="en"> 
+ <head> 
+  <meta charset="UTF-8"> 
+  <title>alraqi-tv</title> 
+  <link rel="icon" href="https://bein.alraqi-tv.com/logo/alraqi-tv.png"> 
+  <meta http-equiv="X-UA-Compatible" content="IE=edge"> 
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"> 
   <style>
     body {
-      font-family: Arial, sans-serif;
-      text-align: center;
-      margin: 20px;
+      margin: 0;
     }
-    #player-container {
-      max-width: 800px;
-      margin: 0 auto;
-    }
-  </style>
-</head>
-<body>
-  <h1>مشغل يدعم M3U8</h1>
-  <div id="player-container">
-    <video
-      id="video-player"
-      class="video-js vjs-default-skin"
-      controls
-      preload="auto"
-      width="800"
-      height="450"
-      data-setup='{}'>
-    </video>
-  </div>
-  <script src="https://vjs.zencdn.net/8.5.2/video.min.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/videojs-contrib-hls/dist/videojs-contrib-hls.min.js"></script>
-  <script>
-    // إعدادات المشغل
-    const player = videojs('video-player', {
-      autoplay: false,
-      controls: true,
-      responsive: true,
-      fluid: true
-    });
 
-    // إضافة رابط الفيديو مع الخيارات المخصصة
-    function setVideoSource(url, referer, userAgent, origin) {
-      const options = {
-        src: url,
-        type: 'application/x-mpegURL',
-        withCredentials: true, // لتفعيل إضافة Headers مخصصة
-        // إضافة Custom Headers
-        headers: {
-          'Referer': referer,
-          'User-Agent': userAgent,
-          'Origin': origin
+    .jwplayer {
+      position: absolute !important;
+    }
+
+    .jwplayer.jw-flag-aspect-mode {
+      min-height: 100%;
+      max-height: 100%;
+    }
+
+    .jw-logo-container {
+      position: absolute;
+      top: 2%;
+      right: 55%;
+    }
+  </style> 
+ </head> 
+ <body> 
+  <div id="jwplayerDiv"></div> 
+  <script src="https://content.jwplatform.com/libraries/SAHhwvZq.js"></script> 
+  <script type="text/javascript">
+    var config = {
+      "file": "https://xyzdddd.mizhls.ru/lb/premium91/index.m3u8", // استبدل هذا بالرابط الفعلي لملف m3u8
+      "userAgent": "Mozilla/5.0 (iPhone; CPU iPhone OS 13_2_3 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/13.0.3 Mobile/15E148 Safari/604.1",
+      "referrer": "https://lewblivehdplay.ru/",
+      "origin": "https://lewblivehdplay.ru"
+    };
+
+    jwplayer("jwplayerDiv").setup({
+      file: config.file,
+      position: 'bottom',
+      autostart: true,
+      stretching: "",
+      width: "100%",
+      type: "hls",
+      volume: "100",
+      mute: false,
+      pipIcon: "true",
+      castIcon: "true",
+      title: "alraqi-CONNECT",
+      logo: {
+        file: "/bein",
+        hide: false,
+        position: "bottom-right",
+        margin: "150",
+        height: "25",
+      },
+      hlsjsConfig: {
+        xhrSetup: function(xhr, url) {
+          xhr.setRequestHeader("User-Agent", config.userAgent);
+          xhr.setRequestHeader("Referer", config.referrer);
+          xhr.setRequestHeader("Origin", config.origin);
         }
-      };
-
-      player.src(options);
-      player.play();
-    }
-
-    // مثال لاستخدام الدالة مع رابط m3u8
-    const exampleUrl = 'https://xyzdddd.mizhls.ru/lb/premium91/index.m3u8';
-    const exampleReferer = 'https://lewblivehdplay.ru/';
-    const exampleUserAgent = 'Mozilla/5.0 (iPhone; CPU iPhone OS 13_2_3 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/13.0.3 Mobile/15E148 Safari/604.1';
-    const exampleOrigin = 'https://example.com';
-
-    setVideoSource(exampleUrl, exampleReferer, exampleUserAgent, exampleOrigin);
-  </script>
-</body>
+      }
+    });
+  </script> 
+ </body>
 </html>
