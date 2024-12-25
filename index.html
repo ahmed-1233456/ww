@@ -32,10 +32,9 @@
   <script src="https://content.jwplatform.com/libraries/SAHhwvZq.js"></script> 
   <script type="text/javascript">
     var config = {
-      "file": "https://xyzdddd.mizhls.ru/lb/premium91/index.m3u8", // استبدل هذا بالرابط الفعلي لملف m3u8
+      "file": "https://xyzdddd.mizhls.ru/lb/premium91/index.m3u8",
       "userAgent": "Mozilla/5.0 (iPhone; CPU iPhone OS 13_2_3 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/13.0.3 Mobile/15E148 Safari/604.1",
-      "referrer": "https://lewblivehdplay.ru/",
-      "origin": "https://lewblivehdplay.ru"
+      "referrer": "https://lewblivehdplay.ru/"
     };
 
     jwplayer("jwplayerDiv").setup({
@@ -61,7 +60,6 @@
         xhrSetup: function(xhr, url) {
           xhr.setRequestHeader("User-Agent", config.userAgent);
           xhr.setRequestHeader("Referer", config.referrer);
-          xhr.setRequestHeader("Origin", config.origin);
         }
       }
     });
