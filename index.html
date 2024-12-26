@@ -1,68 +1,73 @@
 <!doctype html>
 <html lang="en"> 
- <head> 
-  <meta charset="UTF-8"> 
-  <title>alraqi-tv</title> 
-  <link rel="icon" href="https://bein.alraqi-tv.com/logo/alraqi-tv.png"> 
-  <meta http-equiv="X-UA-Compatible" content="IE=edge"> 
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"> 
-  <style>
-    body {
-      margin: 0;
-    }
+<head> 
+  <meta charset="UTF-8"> 
+  <title>alraqi-tv</title> 
+  <link rel="icon" href="https://bein.alraqi-tv.com/logo/alraqi-tv.png"> 
+  <meta http-equiv="X-UA-Compatible" content="IE=edge"> 
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"> 
+<script>jwplayer.key = "XSuP4qMl+9tK17QNb+4+th2Pm9AWgMO/cYH8CI0HGGr7bdjo"</script>
+<style>
+    body {
+      margin: 0;
+    }
 
-    .jwplayer {
-      position: absolute !important;
-    }
+    .jwplayer {
+      position: absolute !important;
+    }
 
-    .jwplayer.jw-flag-aspect-mode {
-      min-height: 100%;
-      max-height: 100%;
-    }
+    .jwplayer.jw-flag-aspect-mode {
+      min-height: 100%;
+      max-height: 100%;
+    }
 
-    .jw-logo-container {
-      position: absolute;
-      top: 2%;
-      right: 55%;
-    }
-  </style> 
- </head> 
- <body> 
-  <div id="jwplayerDiv"></div> 
-  <script src="https://content.jwplatform.com/libraries/SAHhwvZq.js"></script> 
-  <script type="text/javascript">
-    var config = {
-      "file": "https://xyzdddd.mizhls.ru/lb/premium91/index.m3u8",
-      "userAgent": "Mozilla/5.0 (iPhone; CPU iPhone OS 13_2_3 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/13.0.3 Mobile/15E148 Safari/604.1",
-      "referrer": "https://lewblivehdplay.ru/"
-    };
+    .jw-logo-container {
+      position: absolute;
+      top: 2%;
+      right: 55%;
+    }
+  </style> 
+</head> 
+<body> 
+  <div id="jwplayerDiv"></div> 
+  <script src="https://content.jwplatform.com/libraries/SAHhwvZq.js"></script> 
+  <script type="text/javascript">
+    var config = {
+      "file": "https://live-d-01-todtv-da.akamaized.net/variant/v1blackout/spo-hd-09-d/DASH_DASH/Live/channel(spo-hd-09)/manifest.mpd?vcfilter=b1fb6e50-b754-4bde-98a7-ff839640be07&hdnts=st=1735225246~exp=1735239646~acl=/variant/v1blackout/spo-hd-09-d/*~id=153916ea-9ba7-4b04-8c2c-9c246fb5198e~data=1da30aef-e495-4b4e-9148-7ec6944cd856~hmac=ae6239d9206fe42878ee96dead7c5821675a9f23ad6c754be20e545ac839d84e&hdcore=2.11.3",
+      "drm": {
+        "clearkey": {
+          "keyId": "0a7934dddc3136a6922584b96c3fd1e5",
+          "key": "676e6d1dd00bfbe266003efaf0e3aa02"
+        }
+      }
+    };
 
-    jwplayer("jwplayerDiv").setup({
-      file: config.file,
-      position: 'bottom',
-      autostart: true,
-      stretching: "",
-      width: "100%",
-      type: "hls",
-      volume: "100",
-      mute: false,
-      pipIcon: "true",
-      castIcon: "true",
-      title: "alraqi-CONNECT",
-      logo: {
-        file: "/bein",
-        hide: false,
-        position: "bottom-right",
-        margin: "150",
-        height: "25",
-      },
-      hlsjsConfig: {
-        xhrSetup: function(xhr, url) {
-          xhr.setRequestHeader("User-Agent", config.userAgent);
-          xhr.setRequestHeader("Referer", config.referrer);
-        }
-      }
-    });
-  </script> 
- </body>
+    jwplayer("jwplayerDiv").setup({
+      file: config.file,
+      position: 'bottom',
+      autostart: true,
+      stretching: "",
+      width: "100%",
+      type: "dash",
+      volume: "100",
+      mute: false,
+      pipIcon: "true",
+      castIcon: "true",
+      title: "alraqi-CONNECT",
+      logo: {
+        file: "/bein",
+        hide: false,
+        position: "bottom-right",
+        margin: "150",
+        height: "25",
+      },
+      drm: {
+        clearkey: {
+          keyId: config.drm.clearkey.keyId,
+          key: config.drm.clearkey.key
+        }
+      }
+    });
+  </script> 
+</body>
 </html>
